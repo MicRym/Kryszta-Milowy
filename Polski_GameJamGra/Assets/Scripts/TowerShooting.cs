@@ -15,7 +15,16 @@ public class TowerShooting : MonoBehaviour
     [SerializeField]
     float ShootPeriod=0.5f;
     float LastTimeShoot=0;
-    Vector2 CurrentShootDirection;
+    [SerializeField]
+    GameObject[] CanonsBottom;
+    [SerializeField]
+    GameObject[] CanonsUp;
+    [SerializeField]
+    GameObject[] CanonsLeft;
+    [SerializeField]
+    GameObject[] CanonsRight;
+    Vector2 CurrentShootVector;
+    ShootDirection CurrentShootDirection;
     void Start()
     {
         
@@ -23,6 +32,83 @@ public class TowerShooting : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+
+        DirectionUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (int)CurrentShootDirection == 0)
+            ShootBullet(CurrentShootVector, CanonsLeft[0]);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && (int)CurrentShootDirection == 0)
+            ShootBullet(CurrentShootVector, CanonsLeft[1]);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && (int)CurrentShootDirection == 0)
+            ShootBullet(CurrentShootVector, CanonsLeft[2]);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && (int)CurrentShootDirection == 0)
+            ShootBullet(CurrentShootVector, CanonsLeft[3]);
+        ///
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (int)CurrentShootDirection == 1)
+            ShootBullet(CurrentShootVector, CanonsRight[0]);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && (int)CurrentShootDirection == 1)
+            ShootBullet(CurrentShootVector, CanonsRight[1]);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && (int)CurrentShootDirection == 1)
+            ShootBullet(CurrentShootVector, CanonsRight[2]);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && (int)CurrentShootDirection == 1)
+            ShootBullet(CurrentShootVector, CanonsRight[3]);
+        ///
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (int)CurrentShootDirection == 2)
+            ShootBullet(CurrentShootVector, CanonsUp[0]);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && (int)CurrentShootDirection == 2)
+            ShootBullet(CurrentShootVector, CanonsUp[1]);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && (int)CurrentShootDirection == 2)
+            ShootBullet(CurrentShootVector, CanonsUp[2]);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && (int)CurrentShootDirection == 2)
+            ShootBullet(CurrentShootVector, CanonsUp[3]);
+        ///
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (int)CurrentShootDirection == 3)
+            ShootBullet(CurrentShootVector, CanonsBottom[0]);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && (int)CurrentShootDirection == 3)
+            ShootBullet(CurrentShootVector, CanonsBottom[1]);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && (int)CurrentShootDirection == 3)
+            ShootBullet(CurrentShootVector, CanonsBottom[2]);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && (int)CurrentShootDirection == 3)
+            ShootBullet(CurrentShootVector, CanonsBottom[3]);
+
+
+
+    }
+
+    private void ShootBullet(Vector2 ShootVector, GameObject Canon)
+    {
+        if (Time.timeSinceLevelLoad - LastTimeShoot < ShootPeriod) return;
+        LastTimeShoot = Time.timeSinceLevelLoad;
+        var bullet = Instantiate(Bullet, gameObject.transform);
+        var bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
+        bullet.transform.position = Canon.transform.position;
+        bulletRigidbody.velocity = ShootVector.normalized * BulletSpeed;
+    }
+    private void ChangeShootDirection(ShootDirection shootDirection)
+    {
+        CurrentShootDirection = shootDirection;
+        switch (shootDirection)
+        {
+            case ShootDirection.Left:
+                CurrentShootVector= new Vector2(-1, 0.57f);
+               // ShootBullet(CurrentShootVector);
+                break;
+            case ShootDirection.Right:
+                CurrentShootVector = new Vector2(1, -0.57f);
+               // ShootBullet(CurrentShootVector);
+                break;
+            case ShootDirection.Up:
+                CurrentShootVector = new Vector2(1, 0.57f);
+               // ShootBullet(CurrentShootVector);
+                break;
+            case ShootDirection.Down:
+                CurrentShootVector = new Vector2(-1, -0.57f);
+               // ShootBullet(CurrentShootVector);
+                break;
+        }
+    }
+    void DirectionUpdate()
     {
         if (Input.GetKeyDown(KeyCode.W))
             ChangeShootDirection(ShootDirection.Up);
@@ -32,41 +118,6 @@ public class TowerShooting : MonoBehaviour
             ChangeShootDirection(ShootDirection.Left);
         if (Input.GetKeyDown(KeyCode.D))
             ChangeShootDirection(ShootDirection.Right);
-
     }
-
-    private void ShootBullet(Vector2 ShootVector)
-    {
-        if (Time.timeSinceLevelLoad - LastTimeShoot < ShootPeriod) return;
-        LastTimeShoot = Time.timeSinceLevelLoad;
-        var bullet = Instantiate(Bullet);
-        var bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
-        bullet.transform.position = transform.position;
-        bulletRigidbody.velocity = ShootVector.normalized * BulletSpeed;
-    }
-    private void ChangeShootDirection(ShootDirection shootDirection)
-    {
-        Vector2 ShootVector;
-
-
-        switch (shootDirection)
-        {
-            case ShootDirection.Left:
-                ShootVector= new Vector2(-1, 0.57f);
-                ShootBullet(ShootVector);
-                break;
-            case ShootDirection.Right:
-                ShootVector = new Vector2(1, -0.57f);
-                ShootBullet(ShootVector);
-                break;
-            case ShootDirection.Up:
-                ShootVector = new Vector2(1, 0.57f);
-                ShootBullet(ShootVector);
-                break;
-            case ShootDirection.Down:
-                ShootVector = new Vector2(-1, -0.57f);
-                ShootBullet(ShootVector);
-                break;
-        }
-    }
+    
 }
