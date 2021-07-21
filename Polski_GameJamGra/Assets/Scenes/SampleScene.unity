@@ -835,7 +835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 5474609900304828333, guid: 8a63f004bd1e4604bbdb35d5d7e12a28, type: 3}
   BulletSpeed: 5
-  ShootPeriod: 0.25
+  ShootPeriod: 0.1
   CanonsBottom:
   - {fileID: 1766273383}
   - {fileID: 297785875}
@@ -1010,8 +1010,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberofStages: 4
-  BaseCostToAdvance: 30
-  CurrentStage: 1
+  BaseCostToAdvance: 2
+  StageMulti: 2
+  currentStage: 1
 --- !u!1001 &510033697
 PrefabInstance:
   m_ObjectHideFlags: 0

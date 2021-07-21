@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
 
 public class GameController : MonoBehaviour
 {
@@ -11,20 +11,35 @@ public class GameController : MonoBehaviour
     [SerializeField]
     int BaseCostToAdvance = 30;
     [SerializeField]
-    int CurrentStage = 1;
+    int StageMulti = 2;
+    [SerializeField]
+    int currentStage = 1;
     GameObject Tower;
     int TowerHealth;
-    int DropCount;
-    public int dropCount
+    int dropCount;
+    public int DropCount
     {
-        get { return DropCount; }
+        get { return dropCount; }
         set
         {
+            dropCount = value;
             if (OnDropChange != null)
-                OnDropChange.Invoke(DropCount);
+                OnDropChange.Invoke(dropCount);
         }
     }
+
+    public int CurrentStage
+    {
+        get { return currentStage; }
+        set
+        {
+            currentStage = value;
+            if (OnStageChange != null)
+                OnStageChange.Invoke(currentStage);
+        } 
+    }
     public event Action<int> OnDropChange;
+    public event Action<int> OnStageChange;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +49,17 @@ public class GameController : MonoBehaviour
         OnDropChange += drop => TowerProgress(drop);
     }
 
+
     private void TowerProgress(int drop)
     {
         Debug.LogWarning("Drop +1");
-        if (BaseCostToAdvance <= DropCount) CurrentStage++;
+        if (BaseCostToAdvance <= DropCount)
+        {
+            BaseCostToAdvance *= StageMulti;
+            DropCount = 0;
+            if(currentStage <=NumberofStages) CurrentStage++;
+            Debug.Log("Obecny poziom"+CurrentStage);
+        }
     }
 
     private void GameOver(float health)

@@ -6,7 +6,12 @@ using System;
 public class Entity : MonoBehaviour
 {
     [SerializeField]
-    float InitialHealth=10f;
+    float InitialHealth = 10f;
+    public float initalHealth
+        {
+        get { return InitialHealth; }
+        set { InitialHealth = value; }
+        }
 
     private float health;
     public float Health
