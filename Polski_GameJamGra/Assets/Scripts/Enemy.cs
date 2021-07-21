@@ -8,7 +8,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public enum SpriteDirection { Left, Right, Up, Down };
-    
+    [SerializeField]
+    GameObject Drop;
     [SerializeField]
     float Speed = 2.5f;
     Vector2 MoveDirection;
@@ -17,6 +18,12 @@ public class Enemy : MonoBehaviour
     Rigidbody2D RBody;
     [SerializeField]
     SpriteDirection direction;
+    public SpriteDirection Direction
+    {
+        get { return direction; }
+        set { direction = value; }
+    }
+    
     SpriteRenderer Renderer;
     // Start is called before the first frame update
     private void Awake()
@@ -36,6 +43,9 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        
+        var dropInstance=Instantiate(Drop);
+        dropInstance.transform.position = transform.position;
         Destroy(gameObject);
     }
 
