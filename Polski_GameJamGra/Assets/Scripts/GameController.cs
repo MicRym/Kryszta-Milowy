@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class GameController : MonoBehaviour
@@ -15,8 +17,31 @@ public class GameController : MonoBehaviour
     [SerializeField]
     int currentStage = 1;
     GameObject Tower;
+    [SerializeField]
+    Text Text;
+    
     int TowerHealth;
     int dropCount;
+    bool over_Loose=false;
+    bool Over_Loose
+    {
+        set
+        {
+            over_Loose = value;
+            if (over_Loose)
+                OnGameOverLoose();
+        }
+    }
+    bool over_Win=false;
+    bool Over_Win
+    {
+        set
+        {
+            over_Win = value;
+            if (over_Win)
+                OnGameOverWin();
+        }
+    }
     public int DropCount
     {
         get { return dropCount; }
@@ -40,15 +65,35 @@ public class GameController : MonoBehaviour
     }
     public event Action<int> OnDropChange;
     public event Action<int> OnStageChange;
+    public event Action OnGameOverLoose;
+    public event Action OnGameOverWin;
     // Start is called before the first frame update
     void Start()
     {
+        Text.GetComponent<Text>().enabled = false;
         Tower = FindObjectOfType<TowerShooting>().gameObject;
         TowerHealth = (int)Tower.GetComponent<Entity>().Health;
-        Tower.GetComponent<Entity>().OnHealthChanged += health => GameOver(health);
+        Tower.GetComponent<Entity>().OnKilled += () => HPLoss();
         OnDropChange += drop => TowerProgress(drop);
+        OnGameOverLoose += () => GameOver();
+        OnStageChange += stage => Win(stage);
     }
 
+    private void Win(int stage)
+    {
+        if(currentStage>=NumberofStages)
+        {
+            Text.GetComponent<Text>().enabled = true;
+            Over_Win = true;
+        }
+            
+        
+    }
+
+    private void HPLoss( )
+    {
+        Over_Loose = true;
+    }
 
     private void TowerProgress(int drop)
     {
@@ -62,10 +107,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void GameOver(float health)
+    private void GameOver()
     {
-        if(health<=0)
-        Debug.LogError("GAME_OVER");
+        Debug.LogError("GameOver");
+        SceneManager.LoadScene("GameOver");
+        
     }
 
     // Update is called once per frame

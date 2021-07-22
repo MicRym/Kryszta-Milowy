@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         FindObjectOfType<GameController>().OnStageChange += stage =>HealthBuff+=stage;
+        FindObjectOfType<GameController>().OnGameOverWin += () => Active = false;
     }
 
    
@@ -36,5 +37,15 @@ public class Spawner : MonoBehaviour
         spawn.transform.position = transform.position;
         spawn.transform.parent = transform;
      
+    }
+    public void Spawn()
+    {
+        GameObject spawn;
+        if (SpawnedObject.Length < 2) spawn = Instantiate(SpawnedObject[0]);
+        else spawn = Instantiate(SpawnedObject[Random.Range(0, SpawnedObject.Length)]);
+        spawn.GetComponent<Enemy>().Direction = direction;
+        spawn.GetComponent<Entity>().initalHealth += HealthBuff;
+        spawn.transform.position = transform.position;
+        spawn.transform.parent = transform;
     }
 }

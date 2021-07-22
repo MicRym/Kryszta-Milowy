@@ -8,7 +8,12 @@ public class BulletDamage : MonoBehaviour
 
     GameObject Target;
     [SerializeField]
-    int DamageMulti = 1;
+    float shootDamage = 1;
+    public float ShootDamage
+    {
+        get { return shootDamage; }
+        set { shootDamage = value; }
+    }
     public GameObject BulletTarget
     {
         set { Target = value; }
@@ -25,7 +30,7 @@ public class BulletDamage : MonoBehaviour
         var entity = collision.gameObject.GetComponent<Entity>();
         if (entity != null && collision.gameObject.transform.IsChildOf(Target.transform))
         {
-            entity.Health -= 1f*DamageMulti;
+            entity.Health -= ShootDamage;
             Destroy(gameObject);
         }
     }
