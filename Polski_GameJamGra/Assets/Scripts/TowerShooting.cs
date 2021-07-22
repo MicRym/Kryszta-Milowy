@@ -16,6 +16,8 @@ public class TowerShooting : MonoBehaviour
     float ShootPeriod=0.5f;
     float LastTimeShoot=0;
     [SerializeField]
+    float ShootDmg = 1f;
+    [SerializeField]
     GameObject[] CanonsBottom;
     [SerializeField]
     GameObject[] CanonsUp;
@@ -35,7 +37,7 @@ public class TowerShooting : MonoBehaviour
     ShootDirection CurrentShootDirection;
     void Start()
     {
-        
+        FindObjectOfType<GameController>().OnStageChange += stage => ShootDmg += stage;
     }
 
     // Update is called once per frame
@@ -63,13 +65,13 @@ public class TowerShooting : MonoBehaviour
             ShootBullet(CurrentShootVector, CanonsRight[3], SpawnerRight[3]);
         ///
         if (Input.GetKeyDown(KeyCode.Alpha1) && (int)CurrentShootDirection == 2)
-            ShootBullet(CurrentShootVector, CanonsUp[0], SpawnerRight[0]);
+            ShootBullet(CurrentShootVector, CanonsUp[0], SpawnerUp[0]);
         if (Input.GetKeyDown(KeyCode.Alpha2) && (int)CurrentShootDirection == 2)
-            ShootBullet(CurrentShootVector, CanonsUp[1], SpawnerRight[1]);
+            ShootBullet(CurrentShootVector, CanonsUp[1], SpawnerUp[1]);
         if (Input.GetKeyDown(KeyCode.Alpha3) && (int)CurrentShootDirection == 2)
-            ShootBullet(CurrentShootVector, CanonsUp[2], SpawnerRight[2]);
+            ShootBullet(CurrentShootVector, CanonsUp[2], SpawnerUp[2]);
         if (Input.GetKeyDown(KeyCode.Alpha4) && (int)CurrentShootDirection == 2)
-            ShootBullet(CurrentShootVector, CanonsUp[3], SpawnerRight[3]);
+            ShootBullet(CurrentShootVector, CanonsUp[3], SpawnerUp[3]);
         ///
         if (Input.GetKeyDown(KeyCode.Alpha1) && (int)CurrentShootDirection == 3)
             ShootBullet(CurrentShootVector, CanonsBottom[0], SpawnerBottom[0]);
@@ -92,6 +94,7 @@ public class TowerShooting : MonoBehaviour
         var bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
         bullet.transform.position = Canon.transform.position;
         bullet.GetComponent<BulletDamage>().BulletTarget = Spawner;
+        bullet.GetComponent<BulletDamage>().ShootDamage += ShootDmg-1;
         bulletRigidbody.velocity = ShootVector.normalized * BulletSpeed;
     }
     private void ChangeShootDirection(ShootDirection shootDirection)

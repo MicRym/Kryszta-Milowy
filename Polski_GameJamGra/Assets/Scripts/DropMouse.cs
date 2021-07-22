@@ -17,8 +17,9 @@ public class DropMouse : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        //Debug.LogWarning("Postęp +1");
-        FindObjectOfType<GameController>().dropCount++;
+       
+        FindObjectOfType<GameController>().DropCount++;
+       Debug.LogWarning("Obecny drop "+FindObjectOfType<GameController>().DropCount);
         Destroy(gameObject);
 
     }

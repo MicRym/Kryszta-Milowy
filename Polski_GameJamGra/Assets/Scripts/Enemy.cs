@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         GetComponent<Entity>().OnKilled += () => Die();
+        FindObjectOfType<GameController>().OnGameOverWin += () => Die();
         SetUP();
     }
 

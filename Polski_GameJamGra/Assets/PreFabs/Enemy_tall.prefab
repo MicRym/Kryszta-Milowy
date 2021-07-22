@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drop: {fileID: 331954223937913054, guid: 4e51efba3bf12144ba719518b9ed33e3, type: 3}
-  Speed: 2
+  Speed: 1
   DefaultSprite:
   - {fileID: 21300000, guid: 4bf6d03ab3019f2409db55c27aa18cda, type: 3}
   - {fileID: 21300000, guid: 4bf6d03ab3019f2409db55c27aa18cda, type: 3}
