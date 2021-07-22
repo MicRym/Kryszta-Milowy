@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bb55d5dad7222874289b304658c127c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,7 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 72bfa1280d27ebc4ca90034f74bbc197, type: 3}
+  m_Sprite: {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,10 +136,10 @@ MonoBehaviour:
   Drop: {fileID: 331954223937913054, guid: 4e51efba3bf12144ba719518b9ed33e3, type: 3}
   Speed: 1
   DefaultSprite:
-  - {fileID: 21300000, guid: 4bf6d03ab3019f2409db55c27aa18cda, type: 3}
-  - {fileID: 21300000, guid: 4bf6d03ab3019f2409db55c27aa18cda, type: 3}
-  - {fileID: 21300000, guid: 72bfa1280d27ebc4ca90034f74bbc197, type: 3}
-  - {fileID: 21300000, guid: 72bfa1280d27ebc4ca90034f74bbc197, type: 3}
+  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
+  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
+  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
+  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
   direction: 1
 --- !u!114 &-6172378186030425987
 MonoBehaviour:
@@ -170,7 +171,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.93333334, y: 0.8952381}
+    oldSize: {x: 0.8952381, y: 0.82857144}
     newSize: {x: 1, y: 1.1428572}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

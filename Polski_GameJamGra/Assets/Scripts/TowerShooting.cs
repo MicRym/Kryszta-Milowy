@@ -33,11 +33,25 @@ public class TowerShooting : MonoBehaviour
     GameObject[] SpawnerLeft;
     [SerializeField]
     GameObject[] SpawnerRight;
+    [SerializeField]
+    Sprite[] TowerSprites;
+    [SerializeField]
+    GameObject Tower;
+    [SerializeField]
+    GameObject[] Tracks;
+    [SerializeField]
+    Material[] TracksMaterial;
     Vector2 CurrentShootVector;
     ShootDirection CurrentShootDirection;
     void Start()
     {
-        FindObjectOfType<GameController>().OnStageChange += stage => ShootDmg += stage;
+        FindObjectOfType<GameController>().OnStageChange += stage => Upgrade(stage);
+    }
+
+    private void Upgrade(int stage)
+    {
+        Tower.GetComponent<SpriteRenderer>().sprite = TowerSprites[stage-1];
+        ShootDmg += stage;
     }
 
     // Update is called once per frame
@@ -122,14 +136,45 @@ public class TowerShooting : MonoBehaviour
     }
     void DirectionUpdate()
     {
+        
+       
         if (Input.GetKeyDown(KeyCode.W))
+        {
             ChangeShootDirection(ShootDirection.Up);
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+        }
+            
         if (Input.GetKeyDown(KeyCode.S))
+        {
             ChangeShootDirection(ShootDirection.Down);
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+        }
+            
         if (Input.GetKeyDown(KeyCode.A))
+        {
             ChangeShootDirection(ShootDirection.Left);
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+
+        }
+            
         if (Input.GetKeyDown(KeyCode.D))
+        {
             ChangeShootDirection(ShootDirection.Right);
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+        }
+            
     }
 
     

@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Text.GetComponent<Text>().enabled = false;
+       // Text.GetComponent<Text>().enabled = false;
         Tower = FindObjectOfType<TowerShooting>().gameObject;
         TowerHealth = (int)Tower.GetComponent<Entity>().Health;
         Tower.GetComponent<Entity>().OnKilled += () => HPLoss();
