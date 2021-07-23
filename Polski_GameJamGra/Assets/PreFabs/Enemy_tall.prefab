@@ -141,6 +141,8 @@ MonoBehaviour:
   - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
   - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
   direction: 1
+  DeathParticle: {fileID: 7749997062901863364, guid: 8d1904186425e74469977c8c1da7d899,
+    type: 3}
 --- !u!114 &-6172378186030425987
 MonoBehaviour:
   m_ObjectHideFlags: 0

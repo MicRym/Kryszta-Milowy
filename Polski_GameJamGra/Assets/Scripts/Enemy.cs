@@ -13,11 +13,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float Speed = 2.5f;
     Vector2 MoveDirection;
-    [SerializeField]
-    Sprite[] DefaultSprite;
     Rigidbody2D RBody;
     [SerializeField]
     SpriteDirection direction;
+    [SerializeField]
+    ParticleSystem DeathParticle;
     public SpriteDirection Direction
     {
         get { return direction; }
@@ -44,7 +44,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        
+        var particleInstance = Instantiate(DeathParticle);
+        particleInstance.transform.position = transform.position;
         var dropInstance=Instantiate(Drop);
         dropInstance.transform.position = transform.position;
         Destroy(gameObject);
@@ -62,45 +63,54 @@ public class Enemy : MonoBehaviour
         {
             case SpriteDirection.Left:
                 MoveDirection = new Vector2(-1, 0.57f);
-                try
+                Renderer.flipX = false;               /* try
                 {
                     Renderer.sprite = DefaultSprite[(int)SpriteDirection.Left];
+                    
                 }
                 catch
                 {
                     Debug.LogError("Brak przypisanego Sprita");
-                }
+                }*/
                 break;
             case SpriteDirection.Right:
+                Renderer.flipX = false;
                 MoveDirection = new Vector2(1, -0.57f);
-                try
+                /*try
                 {
                     Renderer.sprite = DefaultSprite[(int)SpriteDirection.Right];
+                    
+
                 }
                 catch
                 {
                     Debug.LogError("Brak przypisanego Sprita");
-                }
+                }*/
                 break;
             case SpriteDirection.Up:
+                Renderer.flipX = true;
                 MoveDirection = new Vector2(1, 0.57f);
-                try
+                /*try
                 {
                     Renderer.sprite = DefaultSprite[(int)SpriteDirection.Up];
+                    Renderer.flipX = true;
                 }
                 catch { Debug.LogError("Brak przypisanego Sprita"); }
-                break;
+                */break;
             case SpriteDirection.Down:
+                Renderer.flipX = true;
                 MoveDirection = new Vector2(-1, -0.57f);
-                try
+                /*try
                 {
                     Renderer.sprite = DefaultSprite[(int)SpriteDirection.Down];
+                    Renderer.flipX = true;
+
                 }
                 catch { Debug.LogError("Brak przypisanego Sprita"); }
-                break;
+                */break;
             default:
                 MoveDirection = new Vector2(-1, 0.57f);
-                Renderer.sprite = DefaultSprite[(int)SpriteDirection.Left];
+              //  Renderer.sprite = DefaultSprite[(int)SpriteDirection.Left];
                 break;
         }
             

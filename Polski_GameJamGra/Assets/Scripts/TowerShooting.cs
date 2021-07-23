@@ -105,7 +105,32 @@ public class TowerShooting : MonoBehaviour
         if (Time.timeSinceLevelLoad - LastTimeShoot < ShootPeriod) return;
         LastTimeShoot = Time.timeSinceLevelLoad;
         var bullet = Instantiate(Bullet, gameObject.transform);
+        var bulletSpriteRendere = bullet.GetComponent<SpriteRenderer>();
         var bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
+
+        if ((int)CurrentShootDirection == 2 || (int)CurrentShootDirection == 3) bullet.GetComponent<SpriteRenderer>().flipX = true;
+        switch((int) CurrentShootDirection)
+        {
+            case 0:
+                bulletSpriteRendere.flipX = false;
+               
+                break;
+            case 2:
+                bulletSpriteRendere.flipX = true;
+            
+                break;
+            case 1:
+                bulletSpriteRendere.flipX = false;
+                
+                break;
+            case 3:
+                bulletSpriteRendere.flipX = true;
+                
+                break;
+            default:
+                break;
+
+        }
         bullet.transform.position = Canon.transform.position;
         bullet.GetComponent<BulletDamage>().BulletTarget = Spawner;
         bullet.GetComponent<BulletDamage>().ShootDamage += ShootDmg-1;

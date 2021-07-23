@@ -133,13 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drop: {fileID: 331954223937913054, guid: 4e51efba3bf12144ba719518b9ed33e3, type: 3}
-  Speed: 3
-  DefaultSprite:
-  - {fileID: 92487083584598195, guid: a4c3fe6eb23c29b4a91ee2451b725da7, type: 3}
-  - {fileID: 92487083584598195, guid: a4c3fe6eb23c29b4a91ee2451b725da7, type: 3}
-  - {fileID: 92487083584598195, guid: a4c3fe6eb23c29b4a91ee2451b725da7, type: 3}
-  - {fileID: 92487083584598195, guid: a4c3fe6eb23c29b4a91ee2451b725da7, type: 3}
+  Speed: 2
   direction: 0
+  DeathParticle: {fileID: 7749997062901863364, guid: 8d1904186425e74469977c8c1da7d899,
+    type: 3}
 --- !u!114 &308717061386494091
 MonoBehaviour:
   m_ObjectHideFlags: 0
