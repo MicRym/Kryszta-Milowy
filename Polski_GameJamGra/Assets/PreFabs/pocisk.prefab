@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDamage: 2
+  AudioSource: {fileID: 4719066861764006453, guid: d41e04d8161b36948a663239fef42ece,
+    type: 3}
 --- !u!114 &7668245040705467996
 MonoBehaviour:
   m_ObjectHideFlags: 0

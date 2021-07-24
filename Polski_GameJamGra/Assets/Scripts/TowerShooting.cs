@@ -41,6 +41,8 @@ public class TowerShooting : MonoBehaviour
     GameObject[] Tracks;
     [SerializeField]
     Material[] TracksMaterial;
+    [SerializeField]
+    ParticleSystem TowerUpgradeParticle;
     Vector2 CurrentShootVector;
     ShootDirection CurrentShootDirection;
     void Start()
@@ -52,6 +54,7 @@ public class TowerShooting : MonoBehaviour
     {
         Tower.GetComponent<SpriteRenderer>().sprite = TowerSprites[stage-1];
         ShootDmg += stage;
+        TowerUpgradeParticle.Play();
     }
 
     // Update is called once per frame
@@ -108,7 +111,7 @@ public class TowerShooting : MonoBehaviour
         var bulletSpriteRendere = bullet.GetComponent<SpriteRenderer>();
         var bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
 
-        if ((int)CurrentShootDirection == 2 || (int)CurrentShootDirection == 3) bullet.GetComponent<SpriteRenderer>().flipX = true;
+        //if ((int)CurrentShootDirection == 2 || (int)CurrentShootDirection == 3) bullet.GetComponent<SpriteRenderer>().flipX = true;
         switch((int) CurrentShootDirection)
         {
             case 0:
@@ -166,38 +169,38 @@ public class TowerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             ChangeShootDirection(ShootDirection.Up);
-            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
-            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[2];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
         }
             
         if (Input.GetKeyDown(KeyCode.S))
         {
             ChangeShootDirection(ShootDirection.Down);
-            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
-            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[3];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
         }
             
         if (Input.GetKeyDown(KeyCode.A))
         {
             ChangeShootDirection(ShootDirection.Left);
             Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
-            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
 
         }
             
         if (Input.GetKeyDown(KeyCode.D))
         {
             ChangeShootDirection(ShootDirection.Right);
-            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[0];
-            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
-            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Right].GetComponent<SpriteRenderer>().material = TracksMaterial[1];
+            Tracks[(int)ShootDirection.Up].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Down].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
+            Tracks[(int)ShootDirection.Left].GetComponent<SpriteRenderer>().material = TracksMaterial[4];
         }
             
     }

@@ -24,7 +24,7 @@ public class Canon_Colide : MonoBehaviour
         {
             var tower =FindObjectOfType<TowerShooting>().gameObject.GetComponent<Entity>();
             tower.Health -=enemy.Health;
-            Destroy(enemy.gameObject);
+            collision.GetComponent<Enemy>().Boom();
             Debug.LogWarning(tower.Health);
         }
 

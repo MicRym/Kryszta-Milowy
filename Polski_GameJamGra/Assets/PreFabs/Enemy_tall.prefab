@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7935997426997650163}
   - component: {fileID: -6172378186030425987}
   - component: {fileID: 8528565677173812929}
+  - component: {fileID: 8835675604640606603}
   m_Layer: 0
   m_Name: Enemy_tall
   m_TagString: Untagged
@@ -134,12 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drop: {fileID: 331954223937913054, guid: 4e51efba3bf12144ba719518b9ed33e3, type: 3}
-  Speed: 1
-  DefaultSprite:
-  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
-  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
-  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
-  - {fileID: -6285881158687051388, guid: a42602a93b1b9cd42b0c01aa98edf0ba, type: 3}
+  Speed: 0.25
   direction: 1
   DeathParticle: {fileID: 7749997062901863364, guid: 8d1904186425e74469977c8c1da7d899,
     type: 3}
@@ -196,3 +192,22 @@ PolygonCollider2D:
       - {x: 0.48999998, y: -0.25}
       - {x: 0.48999998, y: -0.14999999}
       - {x: 0.42999998, y: -0.03}
+--- !u!95 &8835675604640606603
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935997426997650172}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a950a8519f0dcce44b97d8e83d54e921, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

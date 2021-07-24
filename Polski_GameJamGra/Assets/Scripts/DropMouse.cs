@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DropMouse : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource DropSound;
     // Start is called before the first frame update
     private void Start()
     {
@@ -20,6 +22,7 @@ public class DropMouse : MonoBehaviour
        
         FindObjectOfType<GameController>().DropCount++;
        Debug.LogWarning("Obecny drop "+FindObjectOfType<GameController>().DropCount);
+        Instantiate(DropSound);
         Destroy(gameObject);
 
     }

@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a2728fd61643543adac1cea2779e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DropSound: {fileID: 4593447043121908890, guid: 33ab74ee332b4724a9dd4f9f0844ff54,
+    type: 3}
 --- !u!60 &5363500069685905765
 PolygonCollider2D:
   m_ObjectHideFlags: 0

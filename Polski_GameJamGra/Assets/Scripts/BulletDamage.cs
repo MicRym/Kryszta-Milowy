@@ -9,6 +9,8 @@ public class BulletDamage : MonoBehaviour
     GameObject Target;
     [SerializeField]
     float shootDamage = 1;
+    [SerializeField]
+    AudioSource AudioSource;
     public float ShootDamage
     {
         get { return shootDamage; }
@@ -20,7 +22,7 @@ public class BulletDamage : MonoBehaviour
     }
     private void Start()
     {
-        
+        Instantiate(AudioSource);
     }
   
 
