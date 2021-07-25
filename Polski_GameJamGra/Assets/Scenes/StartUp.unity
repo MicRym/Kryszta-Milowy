@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f11c3b8a75337e428c095c674adec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToNextLevel: 2.5
+  TimeToNextLevel: 3.5
   NextLevel: MainMenu
 --- !u!4 &2123497228
 Transform:

@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviour
         NewGameButton.onClick.AddListener(NewGameClick);
         ExitButton.onClick.AddListener(ExitClick);
         CreditsButton.onClick.AddListener(CreditsClikcl);
+        ControlsButton.onClick.AddListener(ControlsClick);
     }
 
     private void CreditsClikcl()
@@ -36,6 +37,11 @@ public class MenuController : MonoBehaviour
     private void NewGameClick()
     {
         SceneManager.LoadScene("Story");
+    }
+
+    private void ControlsClick()
+    {
+        SceneManager.LoadScene("Controls");
     }
 
     // Update is called once per frame
