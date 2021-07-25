@@ -37,7 +37,7 @@ public class SpawnerActivator : MonoBehaviour
                 CountOfActiveSpawners = 3;
                 break;
             case 4:
-                CountOfActiveSpawners = 6;
+                CountOfActiveSpawners = 4;
                 break;
             default:
                 CountOfActiveSpawners = 2;
